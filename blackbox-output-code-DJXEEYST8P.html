@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KiMuYu - Joki Murah Yuwin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{font-family:'Poppins',sans-serif;line-height:1.6;color:#fff;overflow-x:hidden;background:linear-gradient(135deg,#0c0c1e 0%,#1a0f3a 25%,#2d1b69 50%,#6C63FF 100%);scroll-behavior:smooth}
+        .container{max-width:1200px;margin:0 auto;padding:0 20px}
+        .glass{background:rgba(255,255,255,0.1);backdrop-filter:blur(20px);border-radius:20px;border:1px solid rgba(255,255,255,0.2);box-shadow:0 25px 45px rgba(0,0,0,0.3)}
+        .navbar{position:fixed;top:0;width:100%;padding:1rem 0;z-index:1000;background:rgba(255,255,255,0.1);backdrop-filter:blur(20px);transition:all 0.3s}
+        .nav-container{display:flex;justify-content:space-between;align-items:center}
+        .logo{font-size:1.8rem;font-weight:700;background:linear-gradient(135deg,#6C63FF,#A78BFA);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+        .nav-menu{display:flex;list-style:none;gap:2rem}
+        .nav-menu a{color:#fff;text-decoration:none;font-weight:500;transition:all 0.3s}
+        .nav-menu a:hover{color:#A78BFA}
+        .hamburger{display:none;flex-direction:column;cursor:pointer;gap:4px}
+        .hamburger span{width:25px;height:3px;background:#fff;transition:0.3s;border-radius:2px}
+        .hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding-top:100px}
+        .hero h1{font-size:clamp(2.5rem,5vw,4rem);font-weight:700;margin-bottom:1rem;background:linear-gradient(135deg,#fff,#A78BFA);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+        .hero .tagline{font-size:clamp(1.1rem,2.5vw,1.5rem);margin-bottom:2rem;opacity:0.9;font-weight:300}
+        .cta-btn{display:inline-block;background:linear-gradient(135deg,#6C63FF,#A78BFA);color:#fff;padding:18px 40px;border:none;border-radius:50px;font-size:1.1rem;font-weight:600;text-decoration:none;transition:all 0.3s;box-shadow:0 15px 35px rgba(108,99,255,0.4)}
+        .cta-btn:hover{transform:translateY(-5px);box-shadow:0 25px 50px rgba(108,99,255,0.6)}
+        section{padding:120px 0}
+        section h2{text-align:center;font-size:clamp(2rem,4vw,3rem);font-weight:700;margin-bottom:4rem;background:linear-gradient(135deg,#fff,#A78BFA);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+        .services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2rem}
+        .service-card{padding:2.5rem;text-align:center;transition:all 0.3s;background:rgba(255,255,255,0.05);border-radius:15px}
+        .service-card:hover{transform:translateY(-10px)}
+        .service-card i{font-size:3.5rem;background:linear-gradient(135deg,#6C63FF,#A78BFA);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:1.5rem;display:block}
+        .service-card h3{font-size:1.5rem;margin-bottom:1rem;color:#fff}
+        .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem}
+        .stat-card{text-align:center;padding:2.5rem}
+        .stat-number{font-size:3rem;font-weight:700;background:linear-gradient(135deg,#6C63FF,#A78BFA);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:0.5rem}
+        .stat-label{font-size:1.1rem;opacity:0.9;margin-bottom:2rem}
+        .progress-item{margin-bottom:2rem}
+        .progress-label{display:flex;justify-content:space-between;margin-bottom:0.8rem;font-weight:500}
+        .progress-bar{background:rgba(255,255,255,0.1);height:12px;border-radius:10px;overflow:hidden}
+        .progress-fill{height:100%;background:linear-gradient(90deg,#6C63FF,#A78BFA);border-radius:10px;width:0%;transition:width 2s ease}
+        .contact-content{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+        .contact-item{display:flex;align-items:center;margin-bottom:1.5rem;gap:1rem}
+        .contact-item i{background:linear-gradient(135deg,#6C63FF,#A78BFA);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-size:1.3rem;width:30px}
+        .contact-item a{color:#25D366;font-weight:500}
+        .form-group{margin-bottom:1.5rem}
+        .form-group input,.form-group textarea{width:100%;padding:15px 20px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);border-radius:12px;color:#fff;font-size:1rem;font-family:inherit;transition:all 0.3s}
+        .form-group input::placeholder,.form-group textarea::placeholder{color:rgba(255,255,255,0.7)}
+        .form-group input:focus,.form-group textarea:focus{outline:none;border-color:#6C63FF;box-shadow:0 0 0 3px rgba(108,99,255,0.2)}
+        .form-status{position:absolute;top:-60px;left:0;right:0;padding:10px;border-radius:8px;font-weight:500;opacity:0;transition:all 0.3s;text-align:center}
+        .form-status.success{background:rgba(34,197,94,0.3);border:1px solid #22c55e;opacity:1}
+        .footer{background:rgba(0,0,0,0.4);padding:3rem 0 1.5rem;text-align:center}
+        .footer-content{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2rem;margin-bottom:2rem}
+        .whatsapp-float{position:fixed;width:60px;height:60px;bottom:40px;right:40px;background:#25D366;color:#fff;border-radius:50px;font-size:30px;box-shadow:0 8px 25px rgba(37,211,102,0.4);z-index:1000;transition:all 0.3s;display:flex;align-items:center;justify-content:center;text-decoration:none}
+        .whatsapp-float:hover{transform:scale(1.1);box-shadow:0 12px 35px rgba(37,211,102,0.6)}
+        .fade-in{opacity:0;transform:translateY(50px);transition:all 0.8s ease}
+        .fade-in.visible{opacity:1;transform:translateY(0)}
+        .scale-in{opacity:0;transform:scale(0.8);transition:all 0.6s ease}
+        .scale-in.visible{opacity:1;transform:scale(1)}
+        @media (max-width:768px){.hamburger{display:flex}.nav-menu{position:fixed;left:-100%;top:70px;flex-direction:column;background:rgba(255,255,255,0.1);backdrop-filter:blur(20px);width:100%;text-align:center;transition:0.3s;padding:2rem 0;gap:1.5rem}.nav-menu.active{left:0}.hero{padding-top:80px;padding:80px 20px 20px}.contact-content{grid-template-columns:1fr;gap:2rem}.whatsapp-float{width:55px;height:55px;bottom:20px;right:20px;font-size:26px}section{padding:80px 0}.services-grid{grid-template-columns:1fr}}
+        .hamburger.active span:nth-child(1){transform:rotate(-45deg) translate(-5px,6px)}
+        .hamburger.active span:nth-child(2){opacity:0}
+        .hamburger.active span:nth-child(3){transform:rotate(45deg) translate(-5px,-6px)}
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">KiMuYu</div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Layanan</a></li>
+                <li><a href="#stats">Keunggulan</a></li>
+                <li><a href="#contact">Kontak</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content fade-in">
+                <h1>KiMuYu</h1>
+                <p class="tagline">Joki Murah Yuwin<br><strong>Aman, Cepat, Ramah Kantong!</strong></p>
+                <a href="#contact" class="cta-btn">Pesan Sekarang</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="glass">
+        <div class="container">
+            <h2 class="fade-in">Layanan Unggulan</h2>
+            <div class="services-grid">
+                <div class="service-card fade-in scale-in"><i class="fas fa-file-alt"></i><h3>Makalah</h3><p>Research mendalam, format akademik, bebas plagiarisme.<br><strong>Deadline 1-3 hari</strong></p></div>
+                <div class="service-card fade-in scale-in"><i class="fas fa-file-powerpoint"></i><h3>PowerPoint</h3><p>Desain modern, animasi smooth, siap sidang.<br><strong>Express 24 jam</strong></p></div>
+                <div class="service-card fade-in scale-in"><i class="fas fa-book-open"></i><h3>Tugas Harian</h3><p>SMA/Kuliah semua pelajaran.<br><strong>Rp15rb/tugas</strong></p></div>
+                <div class="service-card fade-in scale-in"><i class="fas fa-clipboard-check"></i><h3>UTS/UAS</h3><p>Essay/objektif lengkap.<br><strong>Garansi A/B</strong></p></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="stats">
+        <div class="container">
+            <h2 class="fade-in">Keunggulan</h2>
+            <div class="stats-grid">
+                <div class="stat-card glass fade-in">
+                    <div class="stat-number">95%</div><div class="stat-label">Kecepatan</div>
+                    <div class="progress-item"><div class="progress-label"><span>Kecepatan Kerja</span><span>95%</span></div><div class="progress-bar"><div class="progress-fill" data-width="95"></div></div></div>
+                </div>
+                <div class="stat-card glass fade-in">
+                    <div class="stat-number">100%</div><div class="stat-label">Kerahasiaan</div>
+                    <div class="progress-item"><div class="progress-label"><span>Kerahasiaan Data</span><span>100%</span></div><div class="progress-bar"><div class="progress-fill" data-width="100"></div></div></div>
+                </div>
+                <div class="stat-card glass fade-in">
+                    <div class="stat-number">98%</div><div class="stat-label">Kepuasan</div>
+                    <div class="progress-item"><div class="progress-label"><span>Kepuasan Customer</span><span>98%</span></div><div class="progress-bar"><div class="progress-fill" data-width="98"></div></div></div>
+                </div>
+                <div class="stat-card glass fade-in">
+                    <div class="stat-number">99%</div><div class="stat-label">Harga</div>
+                    <div class="progress-item"><div class="progress-label"><span>Harga Terjangkau</span><span>99%</span></div><div class="progress-bar"><div class="progress-fill" data-width="99"></div></div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="glass">
+        <div class="container">
+            <h2 class="fade-in">Order Sekarang</h2>
+            <div class="contact-content fade-in">
+                <div>
+                    <h3 style="margin-bottom:1.5rem;color:#fff">📱 Kontak Cepat</h3>
+                    <div class="contact-item"><i class="fas fa-phone"></i><div><strong>WhatsApp</strong><br><a href="https://wa.me/628895973708">0889-5973-708</a></div></div>
+                    <div class="contact-item"><i class="fas fa-clock"></i><div><strong>Response</strong><br>24 Jam / 7 Hari</div></div>
+                    <div class="contact-item"><i class="fas fa-shield-alt"></i><div><strong>Garansi</strong><br>Refund 100%</div></div>
+                </div>
+                <form id="contactForm" style="position:relative">
+                    <div class="form-status" id="formStatus"></div>
+                    <div class="form-group"><input type="text" id="name" placeholder="👤 Nama" required></div>
+                    <div class="form-group"><input type="tel" id="contact" placeholder="📱 WhatsApp/Email" required></div>
+                    <div class="form-group"><textarea id="desc" placeholder="📝 Jenis tugas, mata pelajaran, deadline..." rows="5" required></textarea></div>
+                    <button type="submit" class="cta-btn" style="width:100%">🚀 Kirim Order</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer glass">
+        <div class="container">
+            <div class="footer-content">
+                <div><h3 style="color:#6C63FF;margin-bottom:1rem">🧠 KiMuYu</h3><p><strong>Joki Murah Yuwin</strong><br>Makalah | PPT | Tugas | UTS/UAS<br><small>Rp15rb+ | 24/7</small></p></div>
+                <div><h3 style="color:#6C63FF">📞 Kontak</h3><p><i class="fas fa-phone"></i> <strong>0889-5973-708</strong><br><i class="fas fa-envelope"></i> athoart022@gmail.com</p></div>
+            </div>
+            <div style="border-top:1px solid rgba(255,255,255,0.1);padding-top:2rem;margin-top:2rem"><p>&copy; 2024 KiMuYu. <a href="https://wa.me/628895973708" style="color:#25D366">WA 0889-5973-708</a></p></div>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/628895973708?text=Halo KiMuYu, mau order joki tugas!" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
+
+    <script>
+        // Mobile menu
+        document.getElementById('hamburger').onclick=()=>{document.getElementById('hamburger').classList.toggle('active');document.getElementById('navMenu').classList.toggle('active')};
+        document.querySelectorAll('a[href^="#"]').forEach(a=>a.onclick=e=>{e.preventDefault();document.querySelector(a.getAttribute('href')).scrollIntoView({behavior:'smooth'});document.getElementById('navMenu').classList.remove('active')});
+        
+        // Scroll animations
+        const obs=new IntersectionObserver(e=>{e.forEach(el=>{if(el.isIntersecting){el.target.classList.add('visible');const pb=el.target.querySelectorAll('.progress-fill');pb.forEach(p=>{p.style.width=p.dataset.width+'%'})}})}, {threshold:0.1});
+        document.querySelectorAll('.fade-in, .scale-in, .stat-card').forEach(el=>obs.observe(el));
+        
+        // Navbar scroll
+        window.onscroll=()=>{document.querySelector('.navbar').style.background=window.scrollY>50?'rgba(255,255,255,0.15)':'rgba(255,255,255,0.1)'};
+        
+        // Form submit → Gmail + WA
+        document.getElementById('contactForm').onsubmit=e=>{
+            e.preventDefault();
+            const n=document.getElementById('name').value,c=document.getElementById('contact').value,d=document.getElementById('desc').value;
+            if(!n||!c||!d){alert('Lengkapi form!');return}
+            const subj=encodeURIComponent(`NEW ORDER - ${n}`),body=encodeURIComponent(`NAMA: ${n}\nKONTAK: ${c}\nTUGAS:\n${d}\n\nOrder: ${new Date().toLocaleString('id-ID')}`);
+            window.open(`https://mail.google.com/mail/?view=cm&to=athoart022@gmail.com&su=${subj}&body=${body}`,'_blank');
+            window.open(`https://wa.me/628895973708?text=Halo! Order: ${n} - ${c} - ${d}`,'_blank');
+            alert('✅ Order terkirim ke Gmail & WA!');
+            document.getElementById('contactForm').reset()
+        }
+    </script>
+</body>
+</html>
